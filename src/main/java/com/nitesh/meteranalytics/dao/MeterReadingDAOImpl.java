@@ -1,8 +1,13 @@
 package com.nitesh.meteranalytics.dao;
 
+
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 import java.util.List;
 
 import com.nitesh.meteranalytics.connection.JDBCConnection;
@@ -16,15 +21,15 @@ public class MeterReadingDAOImpl implements MeterReadingDAO<Meter>{
 	@Override
 	public int add(Meter emp) throws SQLException {
 		int result = -1;
-		String query = QueryBuilder.insertQuery(emp);
+		String query = QueryBuilder.insertCustomQuery(emp);
 		try ( PreparedStatement pstmt = dbConnection.prepareStatement(query)) {
-			pstmt.setLong(1, 11);
-			pstmt.setDate(2, emp.getDate());
-			pstmt.setString(3, String.valueOf(emp.getDate().getMonth()));
-			pstmt.setBigDecimal(4, emp.getPreviousReading());
-			pstmt.setBigDecimal(5, emp.getPresentReading());
-			pstmt.setBigDecimal(6, emp.getKWH());
-			pstmt.setString(7, emp.getRemarks());
+			//pstmt.setLong(1, 11);
+			pstmt.setDate(1, emp.getDate());
+			//pstmt.setString(2, String.valueOf(emp.getDate().getMonth()));
+			pstmt.setBigDecimal(2,getPrevReading(emp));
+			pstmt.setBigDecimal(3, emp.getPresentReading());
+			//pstmt.setBigDecimal(5, emp.getKWH());
+			//pstmt.setString(6, emp.getRemarks());
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -56,5 +61,23 @@ public class MeterReadingDAOImpl implements MeterReadingDAO<Meter>{
 		// TODO Auto-generated method stub
 
 	}
+	
+	public BigDecimal getPrevReading(Meter c) {
+		
+		String tableName  = c.getQuarterNumber() + "_" + c.getStationName();
+		String query = QueryBuilder.selectPrevQuery(tableName, "pres_reading");
+		try ( Statement stmt = dbConnection.createStatement();
+				ResultSet rs = stmt.executeQuery(query)) {
+			if(rs.next()) {
+				return rs.getBigDecimal(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return new BigDecimal(0);
+		
+	}
+
 
 }
