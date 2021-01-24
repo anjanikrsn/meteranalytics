@@ -1,12 +1,18 @@
 package com.nitesh.meteranalytics.query;
 
 import java.util.ArrayList;
+
+import com.nitesh.meteranalytics.models.EMSMeter;
 import com.nitesh.meteranalytics.models.Meter;
 
 public class QueryBuilder {
 
 	public static String insertQuery(Meter emp) {
 		return "INSERT INTO " + "tb_"+ emp.getQuarterNumber() + "_" + emp.getStationName() + " VALUES(?, ?, ?, ?, ?, ?, ?)";
+	}
+	
+	public static String insertQuery(EMSMeter emsObj) {
+		return "INSERT INTO " + "tb_mfm_"+ emsObj.getMeterNo() + " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	}
 
 	public static String selectQuery(ArrayList<String> fields, String tableName) {
