@@ -1,5 +1,7 @@
 package com.nitesh.meteranalytics.query;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import com.nitesh.meteranalytics.models.EMSMeter;
@@ -30,5 +32,9 @@ public class QueryBuilder {
 			query.append(" FROM TABLE" + tableName);
 			return query.toString();
 		}
+	}
+
+	public static String findByMeterNoAndDateQuery(Long meterNo, Timestamp fromDate, Timestamp toDate) {
+		return "SELECT * from tb_mfm_" + meterNo + " where meter_no = "+ meterNo + " and posting_time between '"+ fromDate + "' and '" + toDate + "'";
 	}
 }

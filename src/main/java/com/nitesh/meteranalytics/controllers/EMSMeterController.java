@@ -1,6 +1,8 @@
 package com.nitesh.meteranalytics.controllers;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -46,9 +48,8 @@ public class EMSMeterController {
 		}
 	}
 	
-	@GetMapping("/{no}")
-	public Meter get(@PathVariable("meterNo") Long id) {
-		//return meterReadingRepository.getOne(id);
-		return null;
+	@GetMapping("/{meterNo}/{fromDate}/{toDate}")
+	public List<EMSMeter> get(@PathVariable("meterNo") Long meterNo, @PathVariable("fromDate") Timestamp fromDate, @PathVariable("toDate") Timestamp toDate) {
+		return this.meterReadingDAOImpl.findByMeterNoAndData(meterNo, fromDate, toDate);
 	}
 }

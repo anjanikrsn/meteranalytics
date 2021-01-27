@@ -2,10 +2,13 @@ package com.nitesh.meteranalytics.models;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -26,9 +29,9 @@ public class EMSMeter {
 	private BigDecimal meter_no;
 	
 	@Id
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-ddHH:mm:sss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	@Column(name = "posting_time")
-	private Date posting_time;
+	private String posting_time;
 	
 	
 	@JsonFormat(shape=JsonFormat.Shape.NUMBER_FLOAT)
@@ -110,10 +113,10 @@ public class EMSMeter {
 	@Column(name = "ib_harmonics")
 	private BigDecimal ib_harmonics;
 
-	public Date getPostingTime() {
+	public String getPostingTime() {
 		return posting_time;
 	}
-	public void setPostingTime(Date postingTime) {
+	public void setPostingTime(String postingTime) {
 		this.posting_time = postingTime;
 	}
 	public BigDecimal getMeterNo() {

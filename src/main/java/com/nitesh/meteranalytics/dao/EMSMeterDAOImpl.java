@@ -20,7 +20,7 @@ public class EMSMeterDAOImpl implements MeterReadingDAO<EMSMeter>{
 		try ( PreparedStatement pstmt = dbConnection.prepareStatement(query)) {
 			pstmt.setLong(1, 11);
 			pstmt.setBigDecimal(2, emsObj.getMeterNo());
-			pstmt.setDate(3, emsObj.getPostingTime());
+			pstmt.setString(3, emsObj.getPostingTime());
 			pstmt.setBigDecimal(4, emsObj.getWattageTotal());
 			pstmt.setBigDecimal(5, emsObj.getVarianceTotal());
 			pstmt.setBigDecimal(6, emsObj.getVaTotal());
