@@ -82,7 +82,7 @@ public class EMSMeterReadingDAOImpl implements MeterReadingDAO<EMSMeter>{
 
 	}
 
-	public List<EMSMeter> findByMeterNoAndData(Long meterNo, Timestamp fromDate, Timestamp toDate) {
+	public List<EMSMeter> findByMeterNoAndData(Long meterNo, String fromDate, String toDate) {
 		List<EMSMeter> resultList = new ArrayList<EMSMeter>();
 		if(StringUtils.isEmpty(meterNo) || StringUtils.isEmpty(fromDate)) {
 			return resultList;

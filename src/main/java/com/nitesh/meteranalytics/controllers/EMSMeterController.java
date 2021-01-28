@@ -49,7 +49,7 @@ public class EMSMeterController {
 	}
 	
 	@GetMapping("/{meterNo}/{fromDate}/{toDate}")
-	public List<EMSMeter> get(@PathVariable("meterNo") Long meterNo, @PathVariable("fromDate") Timestamp fromDate, @PathVariable("toDate") Timestamp toDate) {
+	public List<EMSMeter> get(@PathVariable("meterNo") Long meterNo, @PathVariable("fromDate") String fromDate, @PathVariable("toDate") String toDate) {
 		return this.meterReadingDAOImpl.findByMeterNoAndData(meterNo, fromDate, toDate);
 	}
 }
