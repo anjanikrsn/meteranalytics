@@ -37,4 +37,8 @@ public class QueryBuilder {
 	public static String findByMeterNoAndDateQuery(Long meterNo, String fromDate, String toDate) {
 		return "SELECT * from tb_mfm_" + meterNo + " where meter_no = "+ meterNo + " and posting_time between '"+ fromDate + "' and '" + toDate + "'";
 	}
+
+	public static String findByMeterNoAndDateQuery(Long meterNo) {
+		return "SELECT * from tb_mfm_" + meterNo + " where meter_no = "+ meterNo;
+	}
 }

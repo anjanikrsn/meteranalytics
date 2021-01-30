@@ -49,7 +49,6 @@ public class QuarterDAOImpl implements MeterReadingDAO<Quarter> {
 			String stationCode = null;
 			while(rs.next()) {
 				stationCode = rs.getString(1);
-				System.out.println("stationname = "+ stationCode);
 				if(quartersMap.get(stationCode) == null) {
 					List<String> tempQuarterList = new ArrayList<>();
 					tempQuarterList.add(rs.getString(2));
@@ -59,7 +58,6 @@ public class QuarterDAOImpl implements MeterReadingDAO<Quarter> {
 					existingList.add(rs.getString(2));
 				}
 			}
-			System.out.println("map = " + quartersMap);
 			for(Entry<String, List<String>> data : quartersMap.entrySet()) {
 				Quarter quarter = new Quarter();
 				quarter.setStationCode(data.getKey());

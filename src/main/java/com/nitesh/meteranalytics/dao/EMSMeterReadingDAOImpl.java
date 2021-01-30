@@ -84,13 +84,19 @@ public class EMSMeterReadingDAOImpl implements MeterReadingDAO<EMSMeter>{
 
 	public List<EMSMeter> findByMeterNoAndData(Long meterNo, String fromDate, String toDate) {
 		List<EMSMeter> resultList = new ArrayList<EMSMeter>();
-		if(StringUtils.isEmpty(meterNo) || StringUtils.isEmpty(fromDate)) {
+		String query = "";
+		if(StringUtils.isEmpty(meterNo)) {
 			return resultList;
 		}
-		if(StringUtils.isEmpty(toDate)) {
-			toDate = fromDate;
+		if(StringUtils.isEmpty(fromDate) && StringUtils.isEmpty(toDate)) {
+			query = QueryBuilder.findByMeterNoAndDateQuery(meterNo);
 		}
-		String query = QueryBuilder.findByMeterNoAndDateQuery(meterNo, fromDate, toDate);
+		else {
+			if(StringUtils.isEmpty(toDate)) {
+				toDate = fromDate;
+			}
+			query = QueryBuilder.findByMeterNoAndDateQuery(meterNo, fromDate, toDate);
+		}
 		try ( Statement stmt = dbConnection.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
 			while(rs.next()) {
 				EMSMeter emsObj = new EMSMeter();
