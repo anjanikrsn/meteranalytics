@@ -3,8 +3,6 @@ package com.nitesh.meteranalytics.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.nitesh.meteranalytics.models.Meter;
-
 public interface MeterReadingDAO<T> {
 	
 	public int add(T type) 

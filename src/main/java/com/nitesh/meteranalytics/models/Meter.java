@@ -11,7 +11,6 @@ import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 

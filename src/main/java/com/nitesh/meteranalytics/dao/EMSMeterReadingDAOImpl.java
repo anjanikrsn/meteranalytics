@@ -5,9 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +18,7 @@ public class EMSMeterReadingDAOImpl implements MeterReadingDAO<EMSMeter>{
 
 	static Connection dbConnection = JDBCConnection.getConnection();
 	 
-	private final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-ddHHmmsss");
+	//private final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-ddHHmmsss");
 	
 	@Override
 	public int add(EMSMeter emsObj) throws SQLException {
@@ -129,14 +126,6 @@ public class EMSMeterReadingDAOImpl implements MeterReadingDAO<EMSMeter>{
 			e.printStackTrace();
 		}
 		return resultList;
-	}
-	 
-	private java.sql.Timestamp parseTimestamp(String timestamp) {
-	    try {
-	        return new Timestamp(DATE_TIME_FORMAT.parse(timestamp).getTime());
-	    } catch (ParseException e) {
-	        throw new IllegalArgumentException(e);
-	    }
 	}
 
 }
