@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.nitesh</groupId>
 	<artifactId>meteranalytics</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>meteranalytics</name>
 	<description>Meter Analytics</description>
 
